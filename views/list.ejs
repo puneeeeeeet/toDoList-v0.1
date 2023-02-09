@@ -12,16 +12,24 @@
     </div>
 
     <div class="box">
-   <% for(var i = 0;i<newListItems.length;i++){ %>
-    <div class="item">
-        <input type="checkbox">
-        <p><%= newListItems[i] %></p>
-    </div>
-       <% }%>
 
-    <form action="/" method="post">
-        <input type="text" name="itemName" placeholder="add new item" autocomplete="off">
-        <button type="submit" class="btn">+</button>
+      <%  newListItems.forEach(function(item){ %>
+        <form action="/delete" method="post">
+            <div class="item">
+                <input type="checkbox" name="checkbox" value="<%=item._id%>" onchange="this.form.submit()">
+                <p><%= item.name %></p>
+                <input type="hidden" name="listName" value="<%=typeOfDay%>"></input>
+            </div>
+        </form>
+      <%  })    %>
+
+   <!-- <% for(var i = 0;i<newListItems.length;i++){ %>
+    
+       <% }%> -->
+
+    <form class="item" action="/" method="post">
+        <input type="text" name="newItem" placeholder="add new item" autocomplete="off">
+        <button type="submit" name="list" class="btn" value="<%= typeOfDay %>">+</button>
     </form>
 </div>
 </body>
